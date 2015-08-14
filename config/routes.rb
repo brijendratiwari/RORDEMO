@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'test/show'
+
   devise_for :users
   get 'home/index'
 

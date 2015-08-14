@@ -44,5 +44,7 @@ group :development, :test do
   gem "font-awesome-rails"
   gem 'bootstrap-glyphicons'
   gem 'devise'
+  gem 'mail'
+  gem 'byebug'
 end
 
