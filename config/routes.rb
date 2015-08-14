@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get 'setting/mailDetails'
+
+  post 'setting/create'
+
   get 'test/show'
 
   get 'admin/index'
