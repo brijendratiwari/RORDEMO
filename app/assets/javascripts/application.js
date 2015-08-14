@@ -13,7 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require js/nprogress
-//= require turbolinks
+// require turbolinks
 //= require js/bootstrap.min
 //= require js/chartjs/chart.min
 //= require js/progressbar/bootstrap-progressbar.min
@@ -34,4 +34,6 @@
 //= require js/skycons/skycons
 //= require js/validator/validator
 //= require common
+//= require js/datatables/js/jquery.dataTables
+//= require js/datatables/tools/js/dataTables.tableTools
 

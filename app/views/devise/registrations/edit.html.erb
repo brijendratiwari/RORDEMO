@@ -1,39 +1,71 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
+<!-- page content -->
+<div class="right_col" role="main">
+  <div class="page-title">
+    <div class="title_left">
+      <h3>
+        User Information
+      </h3>
+    </div>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%= devise_error_messages! %>
+    <div class="title_right">
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true %>
+    </div>
   </div>
-
-  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-    <%= f.password_field :password, autocomplete: "off" %>
+  <div class="clearfix"></div>
+  <div  class="animate form">
+    <section class="login_content">
+      <%= form_for(resource, as: resource_name, url: registration_path(resource_name), :html => {:class => "form-horizontal form-label-left",:novalidate=>"novalidate"}) do |f| %>
+          <%= devise_error_messages! %>
+          <% if current_user.accessLevel != "Admin" %>
+          <%= f.hidden_field :accessLevel,:value=>'User' %>
+          <% end %>
+          <div class="form-group">
+            <%= f.text_field :firstname, autofocus: true,:class=>'form-control' , :required =>'required',:placeholder=>"First Name" %>
+          </div>
+          <div class="form-group">
+            <%= f.text_field :lastname, autofocus: true,:class=>'form-control' , :required =>'required',:placeholder=>"Last Name" %>
+          </div>
+          <div class="form-group">
+            <%= f.text_field :dob, autofocus: true,:class=>'form-control dateBirth' , :required =>'required',:placeholder=>"Date Of Birth" %>
+          </div>
+          <div class="form-group">
+            <%= f.text_field :contact, autofocus: true,:class=>'form-control' , :required =>'required',:placeholder=>"Contact Number" %>
+          </div>
+          <div class="form-group">
+            <%= f.text_field :position, autofocus: true,:class=>'form-control' , :required =>'required',:placeholder=>"Position" %>
+          </div>
+          <div class="form-group">
+            <%= f.email_field :email, autofocus: true,:class=>'form-control' , :required =>'required',:placeholder=>"Email Address" %>
+          </div>
+          <div class="form-group">
+            <% if @minimum_password_length %>
+                <em>(<%= @minimum_password_length %> characters minimum)</em>
+            <% end %><br />
+            <%= f.password_field :password,:id=>"password" , autocomplete: "off",:class=>'form-control',:required =>'required',:placeholder=>"Passowrd"%>
+          </div>
+          <div class="form-group">
+            <%= f.password_field :password_confirmation,:id=>"password_confirmation" , autocomplete: "off",:class=>'form-control',:required =>'required',:placeholder=>"Confirm Password" %>
+          </div>
+          <div class="form-group">
+            <em>(Current Password for confirm your changes)</em>
+            <%= f.password_field :current_password, autocomplete: "off",:class=>'form-control',:required =>'required',:placeholder=>"Current Password" %>
+          </div>
+          <div class="form-group">
+            <%= f.text_area :address, autofocus: true,:class=>'form-control' , :required =>'required',:placeholder=>"Address" %>
+          </div>
+          <div class="form-group">
+            <%= f.file_field :avatar,:class=>'form-control' , :required =>'required'%>
+          </div>
+          <div class="form-group">
+            <img src="<%= current_user.avatar.url %>"alt="" width="100px" height="100px">
+          </div>
+          <div>
+            <%= f.submit "Update Details",:class => "btn btn-lg btn-default submit" %>
+          </div>
+          <div class="clearfix"></div>
+      <% end %>
+      <!-- form -->
+    </section>
+    <!-- content -->
   </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-    <%= f.password_field :current_password, autocomplete: "off" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Update" %>
-  </div>
-<% end %>
-
-<h3>Cancel my account</h3>
-
-<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
-
-<%= link_to "Back", :back %>
+</div>
