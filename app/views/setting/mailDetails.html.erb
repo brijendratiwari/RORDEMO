@@ -1,0 +1,110 @@
+<!-- page content -->
+<div class="right_col" role="main">
+
+  <div class="">
+    <div class="page-title">
+      <div class="title_left">
+        <h3>
+            Settings
+        </h3>
+      </div>
+
+    </div>
+    <div class="clearfix"></div>
+
+    <div class="row">
+      <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="x_panel">
+          <div class="x_title">
+            <h2>Mail Server <small>detail</small></h2>
+
+            <div class="clearfix"></div>
+          </div>
+          <div class="x_content">
+            <%= form_for(@setting,url: setting_create_path(@setting),  :html => {:class => "form-horizontal form-label-left",:novalidate=>"novalidate"}) do |f| %>
+
+              <span class="section"> IMAP, POP3, and SMTP Details</span>
+
+              <div class="item form-group">
+                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="website">Host Address	 <span class="required">*</span>
+                </label>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                  <%= f.text_field :hostaddress, autofocus: true,:class=>'form-control' , :required =>'required',:placeholder=>"www.website.com" %>
+                </div>
+                <% if @setting.errors[:hostaddress] %>
+                    <ul class="parsley-errors-list filled" id="parsley-id-2042"><li class="parsley-required">This value is required.</li></ul>
+                <% end %>
+              </div>
+              <div class="item form-group">
+                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="number">Port <span class="required">*</span>
+                </label>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                  <%= f.text_field :port,:class=>'form-control' , :required =>'required',:placeholder=>"Port" %>
+                </div>
+                <% if @setting.errors[:port] %>
+                    <ul class="parsley-errors-list filled" id="parsley-id-2042"><li class="parsley-required">This value is required.</li></ul>
+                <% end %>
+              </div>
+
+
+
+              <div class="item form-group">
+                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">User Name / Email <span class="required">*</span>
+                </label>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                  <%= f.text_field :user_name,:class=>'form-control' , :required =>'required',:placeholder=>"User Name / Email" %>
+                </div>
+                <% if @setting.errors[:user_name] %>
+                    <ul class="parsley-errors-list filled" id="parsley-id-2042"><li class="parsley-required">This value is required.</li></ul>
+                <% end %>
+              </div>
+              <div class="item form-group">
+                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="email">Password <span class="required">*</span>
+                </label>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                  <%= f.text_field :password,:class=>'form-control' , :required =>'required',:placeholder=>"Password" %>
+                </div>
+                <% if @setting.errors[:password] %>
+                    <ul class="parsley-errors-list filled" id="parsley-id-2042"><li class="parsley-required">This value is required.</li></ul>
+                <% end %>
+              </div>
+              <div class="item form-group">
+                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="email">Enable SSL Status <span class="required">*</span>
+                </label>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                  <%= f.text_field :enable_ssl,:class=>'form-control' , :required =>'required',:placeholder=>"Enable SSL Status" %>
+                </div>
+                <% if @setting.errors[:enable_ssl] %>
+                    <ul class="parsley-errors-list filled" id="parsley-id-2042"><li class="parsley-required">This value is required.</li></ul>
+                <% end %>
+              </div>
+
+              <div class="item form-group">
+                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="website">Protocol <span class="required">*</span>
+                </label>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                  <%= f.text_field :protocol,:class=>'form-control' , :required =>'required',:placeholder=>"Protocol" %>
+                </div>
+                <% if @setting.errors[:protocol] %>
+                    <ul class="parsley-errors-list filled" id="parsley-id-2042"><li class="parsley-required">This value is required.</li></ul>
+                <% end %>
+              </div>
+              <div class="ln_solid"></div>
+              <div class="form-group">
+                <div class="col-md-6 col-md-offset-3">
+                  <button type="submit" class="btn btn-primary">Cancel</button>
+                  <button id="send" type="submit" class="btn btn-success">Submit</button>
+                </div>
+              </div>
+            <% end %>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+</div>
+<!-- /page content -->

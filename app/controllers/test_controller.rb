@@ -8,11 +8,6 @@ class TestController < ApplicationController
      #                  :password   => 'ankit12345',
      #                  :enable_ssl => false
    # end
-    @user = User.find(1)
-    @message = "test"
-    @email = "ankit@ignisitsolutions.com"
-    UserMailer.welcome_email(@user).deliver
 
-    byebug
   end
 end
