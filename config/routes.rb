@@ -1,4 +1,14 @@
 Rails.application.routes.draw do
+  get 'admin/index'
+
+  get 'admin/new'
+
+  post 'admin/create'
+
+  get 'admin/edit'
+
+  patch 'admin/update'
+
   devise_for :users
   get 'home/index'
 

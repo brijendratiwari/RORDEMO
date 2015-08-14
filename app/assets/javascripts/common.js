@@ -9,7 +9,15 @@ $(document).ready(function(){
     }, function (start, end, label) {
         console.log(start.toISOString(), end.toISOString(), label);
     });
+    var oTable = $('#example').dataTable({
+        "oLanguage": {
+            "sSearch": "Search User:"
+        },
+        'iDisplayLength': 12,
+        "sPaginationType": "full_numbers",
+        "dom": 'T<"clear">lfrtip'
 
+    });
 
 //$('form')
 //    .on('blur', 'input[required], input.optional, select.required', validator.checkField)
