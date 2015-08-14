@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <!-- Meta, title, CSS, favicons, etc. -->
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Office Management!</title>
+
+  <title>Office</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body class="nav-md">
+<div class="container body">
+
+
+  <div class="main_container">
+    <% if current_user %>
+    <%= render "common/sidenav" %>
+    <!-- top navigation -->
+    <%= render "common/topnav" %>
+   <% end %>
+    <%= yield %>
+  </div>
+
+</div>
+</body>
+</html>
