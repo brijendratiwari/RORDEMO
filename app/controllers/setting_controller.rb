@@ -12,6 +12,19 @@ class SettingController < ApplicationController
      end
    end
 
+  def edit
+    @setting = Setting.find(params[:format])
+    end
+
+  def update
+    @setting = Setting.find_by(params[:format])
+    if @setting.update_attributes
+      redirec_to home_index_path
+    else
+      render 'edit'
+    end
+
+  end
 
   protected
 

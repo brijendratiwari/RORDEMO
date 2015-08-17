@@ -3,6 +3,10 @@ Rails.application.routes.draw do
 
   post 'setting/create'
 
+  get 'setting/edit'
+
+  patch 'setting/update'
+
   get 'test/show'
 
   get 'admin/index'
