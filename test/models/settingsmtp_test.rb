@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class SettingTest < ActiveSupport::TestCase
+class SettingsmtpTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

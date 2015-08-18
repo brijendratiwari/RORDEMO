@@ -1,0 +1,66 @@
+
+<!-- page content -->
+<div class="right_col" role="main">
+
+  <div class="">
+    <div class="page-title">
+      <div class="title_left">
+        <h3>
+          <p id="notice"><%= notice %></p>
+        </h3>
+      </div>
+
+    </div>
+    <div class="clearfix"></div>
+
+    <div class="row">
+      <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="x_panel">
+          <div class="x_title">
+            <h2>List</h2>
+
+            <div class="clearfix"></div>
+          </div>
+          <div class="x_content">
+
+            <table class="table table-striped responsive-utilities jambo_table">
+              <thead>
+              <tr class="headings">
+                <th>Hostaddress</th>
+                <th>Post</th>
+                <th>User name</th>
+                <th>Password</th>
+                <th>Enable ssl</th>
+                <th>Protocol</th>
+                <th colspan="3"></th>
+              </tr>
+              </thead>
+
+              <tbody>
+              <% @settingsmtps.each do |settingsmtp| %>
+                  <tr>
+                    <td><%= settingsmtp.hostaddress %></td>
+                    <td><%= settingsmtp.post %></td>
+                    <td><%= settingsmtp.user_name %></td>
+                    <td><%= settingsmtp.password %></td>
+                    <td><%= settingsmtp.enable_ssl %></td>
+                    <td><%= settingsmtp.protocol %></td>
+                    <td><%= link_to 'Show', settingsmtp,:class => 'btn btn-success btn-sm' %>
+               <%= link_to 'Edit', edit_settingsmtp_path(settingsmtp),:class => 'btn btn-primary btn-sm' %>
+                    <%= link_to 'Destroy', settingsmtp, method: :delete, data: { confirm: 'Are you sure?' },:class => 'btn btn-danger btn-sm' %></td>
+                  </tr>
+              <% end %>
+              </tbody>
+            </table>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+</div>
+<!-- /page content -->
+

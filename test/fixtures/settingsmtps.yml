@@ -2,14 +2,18 @@
 
 one:
   hostaddress: MyString
-  port: 1
+  post: MyString
   user_name: MyString
   password: MyString
   enable_ssl: MyString
+  protocol: MyString
+  user_id: 1
 
 two:
   hostaddress: MyString
-  port: 1
+  post: MyString
   user_name: MyString
   password: MyString
   enable_ssl: MyString
+  protocol: MyString
+  user_id: 1
