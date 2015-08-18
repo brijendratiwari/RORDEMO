@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  get 'setting/mailDetails'
+  get 'setting/mailDetails'=> "settings"
 
   post 'setting/create'
 
