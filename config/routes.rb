@@ -1,11 +1,6 @@
 Rails.application.routes.draw do
-  get 'setting/mailDetails'
+  resources :settingsmtps
 
-  post 'setting/create'
-
-  get 'setting/edit'
-
-  patch 'setting/update'
 
   get 'test/show'
 
@@ -18,6 +13,8 @@ Rails.application.routes.draw do
   get 'admin/edit'
 
   patch 'admin/update'
+
+  delete 'admin/destroy'
 
   devise_for :users
   get 'home/index'

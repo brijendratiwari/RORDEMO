@@ -64,7 +64,9 @@
               <td class=" "><%= data.email %></td>
               <td class=" "><%= data.position %></td>
               <td class=" "><%= data.created_at %></td>
-              <td class=" last"><a href="#">View</a>
+              <td class=" last">
+                <a href="<%= edit_user_registration_path(data.id) %>" class="btn btn-sm btn-primary">Edit</a>
+                <%= link_to 'Delete', admin_destroy_path(data.id), method: :delete, data: { confirm: 'Are you sure?' },:class=>'btn btn-sm btn-danger' %></td>
               </td>
             </tr>
              <% end %>
