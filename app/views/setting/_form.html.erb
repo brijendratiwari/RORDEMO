@@ -59,7 +59,7 @@
         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="website">Protocol <span class="required">*</span>
         </label>
         <div class="col-md-6 col-sm-6 col-xs-12">
-          <%= f.text_field :protocol,:class=>'form-control' , :required =>'required',:placeholder=>"Protocol" %>
+          <%= f.select(:protocol,  [["POP3", "POP3"], ["IMAP", "IMAP"],["SMTP","SMTP"]], {include_blank: "Select something"}, { :class=>'form-control' }) %>
         </div>
         <% if @setting.errors[:protocol].present? %>
             <ul class="parsley-errors-list filled" id="parsley-id-2042"><li class="parsley-required">This value is required.</li></ul>
