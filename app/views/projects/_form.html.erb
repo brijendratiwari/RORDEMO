@@ -1,0 +1,44 @@
+
+  <div class="x_content">
+    <%= form_for(@project,  :html => {:class => "form-horizontal form-label-left",:novalidate=>"novalidate"}) do |f| %>
+
+
+        <div class="item form-group">
+          <%= f.label :name,:class=>"control-label col-md-3 col-sm-3 col-xs-12" %>
+          <div class="col-md-6 col-sm-6 col-xs-12">
+            <%= f.text_field :name, autofocus: true,:class=>'form-control' , :required =>'required',:placeholder=>"Project Name" %>
+          </div>
+        </div>
+        <div class="item form-group">
+          <%= f.label :description,:class=>"control-label col-md-3 col-sm-3 col-xs-12" %>
+          <div class="col-md-6 col-sm-6 col-xs-12">
+            <%= f.text_area :description, :class=>'form-control' , :required =>'required',:placeholder=>"Description" %>
+          </div>
+        </div>
+        <div class="item form-group">
+          <%= f.label :start_date,:lable=>"",:class=>"control-label col-md-3 col-sm-3 col-xs-12" %>
+          <div class="col-md-6 col-sm-6 col-xs-12">
+            <%= f.text_field :start_date,:id=>"diffdate",:class=>'form-control dateBirth' , :required =>'required' %>
+          </div>
+        </div>
+        <div class="item form-group">
+          <%= f.label :estimeted_end_date,:class=>"control-label col-md-3 col-sm-3 col-xs-12" %>
+          <div class="col-md-6 col-sm-6 col-xs-12">
+            <%= f.text_field :estimeted_end_date ,:class=>'form-control dateBirth' , :required =>'required' %>
+          </div>
+        </div>
+        <div class="item form-group">
+          <%= f.label :users_id,:class=>"control-label col-md-3 col-sm-3 col-xs-12" %>
+          <div class="col-md-6 col-sm-6 col-xs-12">
+            <%= f.number_field :users_id %>
+          </div>
+        </div>
+        <div class="ln_solid"></div>
+        <div class="form-group">
+
+          <div class="col-md-6 col-md-offset-3">
+            <%= f.submit %>
+          </div>
+        </div>
+    <% end %>
+  </div>

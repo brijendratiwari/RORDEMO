@@ -9,6 +9,11 @@ $(document).ready(function(){
     }, function (start, end, label) {
         console.log(start.toISOString(), end.toISOString(), label);
     });
+
+    $('#diffdate').daterangepicker(null, function (start, end, label) {
+        console.log(start.toISOString(), end.toISOString(), label);
+    });
+
     var oTable = $('#example').dataTable({
         "oLanguage": {
             "sSearch": "Search User:"

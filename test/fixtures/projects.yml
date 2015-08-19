@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  description: MyText
+  start_date: 2015-08-19
+  estimeted_end_date: 2015-08-19
+  users_id: 1
+
+two:
+  name: MyString
+  description: MyText
+  start_date: 2015-08-19
+  estimeted_end_date: 2015-08-19
+  users_id: 1
