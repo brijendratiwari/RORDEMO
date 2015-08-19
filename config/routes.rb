@@ -3,7 +3,9 @@ Rails.application.routes.draw do
   resources :settingsmtps
 
 
-  get 'test/show'
+  get 'mymail/show'
+
+  get 'mymail/composemail'
 
   get 'admin/index'
 
