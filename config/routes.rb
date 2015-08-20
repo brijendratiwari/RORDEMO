@@ -4,6 +4,7 @@ Rails.application.routes.draw do
 
   get 'contact/index'
 
+  resources :projects
   resources :settingsmtps
 
 
