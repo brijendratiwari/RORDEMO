@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
 
   mount_uploader :avatar, AvatarUploader
 
-  validates :firstname,:lastname,:contact,:position,:email,:address,:dob,:accessLevel, :password, :password_confirmation,presence: true
+  validates :firstname,:lastname,:contact,:position,:email,:address,:dob,:accessLevel, :password, :password_confirmation,:skills,presence: true
 
 
   def congrats_email

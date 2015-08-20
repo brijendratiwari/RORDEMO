@@ -47,5 +47,6 @@ group :development, :test do
 
   gem 'mail'
   gem 'carrierwave'
+  gem 'will_paginate'
 end
 

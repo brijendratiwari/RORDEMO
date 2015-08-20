@@ -9,11 +9,12 @@
       <ul class="nav navbar-nav navbar-right">
         <li class="">
           <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-            <img src="<%= current_user.avatar.url %>"alt=""><%= current_user.firstname %>
+            <img src="<%= current_user.avatar.url %>"alt=""><%= current_user.firstname.titleize %>
             <span class=" fa fa-angle-down"></span>
           </a>
           <ul class="dropdown-menu dropdown-usermenu animated fadeInDown pull-right">
-            <li><a href="<%= edit_user_registration_path(current_user.id) %>">  Profile</a>
+           <!-- <li><a href="<%= edit_user_registration_path(current_user.id) %>">  Profile</a> -->
+            <li><a href="<%= profile_show_path(current_user.id) %>">  Profile</a>
             </li>
             <li>
               <a href="<%= new_settingsmtp_path %>">

@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  get 'profile/show'
+
+  get 'contact/index'
+
   resources :settingsmtps
 
 
