@@ -1,0 +1,106 @@
+<div class="right_col" role="main">
+
+  <div class="">
+    <div class="page-title">
+      <div class="title_left">
+        <h3>Member's <small>Task List</small></h3>
+      </div>
+
+      <div class="title_right">
+
+      </div>
+    </div>
+    <div class="clearfix"></div>
+
+    <div class="row">
+      <div class="col-md-12">
+        <div class="x_panel">
+          <div class="x_title">
+            <h2>Task List with descriptions</h2>
+            <ul class="nav navbar-right panel_toolbox">
+              <%= link_to 'Task for me',tasks_path(id: params[:id].to_i,user_id: current_user.id), :class => 'btn btn-xs btn-primary' %>
+              <%= link_to 'Add Task', new_task_path(id: params[:id].to_i), :class => 'btn btn-xs btn-primary' %>
+            </ul>
+            <div class="clearfix"></div>
+          </div>
+
+          <div class="x_content">
+
+            <div class="col-md-9 col-sm-9 col-xs-12">
+
+              <ul class="stats-overview">
+                <li>
+                  <span class="name"> Estimated budget </span>
+                  <span class="value text-success"> 2300 </span>
+                </li>
+                <li>
+                  <span class="name"> Total amount spent </span>
+                  <span class="value text-success"> 2000 </span>
+                </li>
+                <li class="hidden-phone">
+                  <span class="name"> Estimated project duration </span>
+                  <span class="value text-success"> 20 </span>
+                </li>
+              </ul>
+              <br />
+
+              <div>
+
+                <h4>Task</h4>
+
+                <!-- end of user messages -->
+                <ul class="messages">
+                  <% @tasks.each do |data| %>
+                  <li>
+                    <img src="<%= data.users.avatar.url %>" class="avatar" alt="Avatar">
+                    <div class="message_date">
+                      <h3 class="date text-info"><%= data.created_at.strftime("%d") %></h3>
+                      <p class="month"><%= data.created_at.strftime("%B")%>,<%= data.created_at.strftime("%Y")%></p>
+                    </div>
+                    <div class="message_wrapper">
+                      <h4 class="heading"><%= data.users.firstname.titleize %> <%= data.users.lastname %> (Assigned by)</h4>
+                      <b><%= data.name %></b><br>
+                      <blockquote class="message"><%= data.descriptions %></blockquote>
+                      <br />
+                      <p class="url">
+                        <i class="fa fa-users"></i> Assigned to :
+                      </p>
+                      <% data.user.each do |username| %>
+                      <p class="url">
+                        <span class="fs1 text-info" aria-hidden="true" data-icon=""></span>
+                        <a href="#"><i class="fa fa-user"></i> <%= username.firstname %> <%= username.lastname %> </a>
+                      </p>
+                     <% end %>
+
+                    </div>
+                  </li>
+                <% end %>
+                </ul>
+                <!-- end of user messages -->
+
+
+              </div>
+
+
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- footer content -->
+  <footer>
+    <div class="">
+      <p class="pull-right">Gentelella Alela! a Bootstrap 3 template by <a>Kimlabs</a>. |
+        <span class="lead"> <i class="fa fa-paw"></i> Gentelella Alela!</span>
+      </p>
+    </div>
+    <div class="clearfix"></div>
+  </footer>
+  <!-- /footer content -->
+
+</div>
+
+

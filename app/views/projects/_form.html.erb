@@ -2,43 +2,60 @@
   <div class="x_content">
     <%= form_for(@project,  :html => {:class => "form-horizontal form-label-left",:novalidate=>"novalidate"}) do |f| %>
 
+        <%= f.hidden_field :users_id,:value => current_user.id %>
 
         <div class="item form-group">
           <%= f.label :name,:class=>"control-label col-md-3 col-sm-3 col-xs-12" %>
           <div class="col-md-6 col-sm-6 col-xs-12">
             <%= f.text_field :name, autofocus: true,:class=>'form-control' , :required =>'required',:placeholder=>"Project Name" %>
           </div>
+          <% if @project.errors[:name].present? %>
+              <ul class="parsley-errors-list filled" id="parsley-id-2042"><li class="parsley-required">This value is required.</li></ul>
+          <% end %>
         </div>
         <div class="item form-group">
           <%= f.label :description,:class=>"control-label col-md-3 col-sm-3 col-xs-12" %>
           <div class="col-md-6 col-sm-6 col-xs-12">
             <%= f.text_area :description, :class=>'form-control' , :required =>'required',:placeholder=>"Description" %>
           </div>
+          <% if @project.errors[:description].present? %>
+              <ul class="parsley-errors-list filled" id="parsley-id-2042"><li class="parsley-required">This value is required.</li></ul>
+          <% end %>
         </div>
         <div class="item form-group">
           <%= f.label :start_date,:lable=>"",:class=>"control-label col-md-3 col-sm-3 col-xs-12" %>
           <div class="col-md-6 col-sm-6 col-xs-12">
-            <%= f.text_field :start_date,:id=>"diffdate",:class=>'form-control dateBirth' , :required =>'required' %>
+            <%= f.text_field :start_date,:id=>"",:class=>'form-control dateBirth' , :required =>'required' %>
           </div>
+          <% if @project.errors[:start_date].present? %>
+              <ul class="parsley-errors-list filled" id="parsley-id-2042"><li class="parsley-required">This value is required.</li></ul>
+          <% end %>
         </div>
         <div class="item form-group">
           <%= f.label :estimeted_end_date,:class=>"control-label col-md-3 col-sm-3 col-xs-12" %>
           <div class="col-md-6 col-sm-6 col-xs-12">
             <%= f.text_field :estimeted_end_date ,:class=>'form-control dateBirth' , :required =>'required' %>
           </div>
+          <% if @project.errors[:estimeted_end_date].present? %>
+              <ul class="parsley-errors-list filled" id="parsley-id-2042"><li class="parsley-required">This value is required.</li></ul>
+          <% end %>
         </div>
         <div class="item form-group">
-          <%= f.label :users_id,:class=>"control-label col-md-3 col-sm-3 col-xs-12" %>
-          <div class="col-md-6 col-sm-6 col-xs-12">
-            <%= f.number_field :users_id %>
-          </div>
+            <%= f.fields_for :project_user_relations do |m| %>
+
+                  <%= m.label :user_id,:class=>"control-label col-md-3 col-sm-3 col-xs-12" %>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                  <%= m.select(:user_id,  User.all.map{|u| ["#{u.firstname}", u.id]}, { :class=>'form-control' },{:multiple => true}) %>
+                </div>
+
+            <% end %>
+
         </div>
         <div class="ln_solid"></div>
         <div class="form-group">
-
-          <div class="col-md-6 col-md-offset-3">
-            <%= f.submit %>
-          </div>
+            <div class="col-md-6 col-md-offset-3">
+              <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
         </div>
     <% end %>
   </div>

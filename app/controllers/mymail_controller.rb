@@ -1,4 +1,5 @@
 class MymailController < ApplicationController
+  before_action :authenticate_user!
   def show
 
     @settingsmtp = Settingsmtp.where('user_id = ?',current_user.id)

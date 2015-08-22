@@ -1,11 +1,14 @@
 Rails.application.routes.draw do
 
+  resources :tasks
+
   get 'profile/show'
 
   get 'contact/index'
 
   resources :projects
   resources :settingsmtps
+
 
 
   get 'mymail/show'

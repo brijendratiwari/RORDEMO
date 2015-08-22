@@ -121,30 +121,17 @@
               <!-- start skills -->
               <h4>Skills</h4>
               <ul class="list-unstyled user_data">
+                <%
+                   skills = @profile[0].skills.split(',')
+                   skills.each do |skilldata|
+                %>
                 <li>
-                  <p>Web Applications</p>
+                  <p><%= skilldata %></p>
                   <div class="progress progress_sm">
-                    <div class="progress-bar bg-green" role="progressbar" data-transitiongoal="50"></div>
+                    <div class="progress-bar bg-green" role="progressbar" data-transitiongoal="300"></div>
                   </div>
                 </li>
-                <li>
-                  <p>Website Design</p>
-                  <div class="progress progress_sm">
-                    <div class="progress-bar bg-green" role="progressbar" data-transitiongoal="70"></div>
-                  </div>
-                </li>
-                <li>
-                  <p>Automation & Testing</p>
-                  <div class="progress progress_sm">
-                    <div class="progress-bar bg-green" role="progressbar" data-transitiongoal="30"></div>
-                  </div>
-                </li>
-                <li>
-                  <p>UI / UX</p>
-                  <div class="progress progress_sm">
-                    <div class="progress-bar bg-green" role="progressbar" data-transitiongoal="50"></div>
-                  </div>
-                </li>
+                <% end %>
               </ul>
               <!-- end of skills -->
 
@@ -263,9 +250,10 @@
                       </tr>
                       </thead>
                       <tbody>
+                      <% @projects.each do |data| %>
                       <tr>
                         <td>1</td>
-                        <td>New Company Takeover Review</td>
+                        <td><%= data.name %></td>
                         <td>Deveint Inc</td>
                         <td class="hidden-phone">18</td>
                         <td class="vertical-align-mid">
@@ -274,39 +262,7 @@
                           </div>
                         </td>
                       </tr>
-                      <tr>
-                        <td>2</td>
-                        <td>New Partner Contracts Consultanci</td>
-                        <td>Deveint Inc</td>
-                        <td class="hidden-phone">13</td>
-                        <td class="vertical-align-mid">
-                          <div class="progress">
-                            <div class="progress-bar progress-bar-danger" data-transitiongoal="15"></div>
-                          </div>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>3</td>
-                        <td>Partners and Inverstors report</td>
-                        <td>Deveint Inc</td>
-                        <td class="hidden-phone">30</td>
-                        <td class="vertical-align-mid">
-                          <div class="progress">
-                            <div class="progress-bar progress-bar-success" data-transitiongoal="45"></div>
-                          </div>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>4</td>
-                        <td>New Company Takeover Review</td>
-                        <td>Deveint Inc</td>
-                        <td class="hidden-phone">28</td>
-                        <td class="vertical-align-mid">
-                          <div class="progress">
-                            <div class="progress-bar progress-bar-success" data-transitiongoal="75"></div>
-                          </div>
-                        </td>
-                      </tr>
+                          <% end %>
                       </tbody>
                     </table>
                     <!-- end user projects -->

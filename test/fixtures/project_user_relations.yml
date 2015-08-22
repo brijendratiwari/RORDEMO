@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  projects_id: 1
+  users_id: 1
+
+two:
+  projects_id: 1
+  users_id: 1

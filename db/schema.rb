@@ -11,17 +11,31 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+ActiveRecord::Schema.define(version: 20150822060636) do
 
-ActiveRecord::Schema.define(version: 20150819055403) do
+  create_table "posts", force: :cascade do |t|
+    t.string   "name",       limit: 255
+    t.string   "title",      limit: 255
+    t.text     "content",    limit: 65535
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+  end
+
+  create_table "project_user_relations", force: :cascade do |t|
+    t.integer  "projects_id", limit: 4
+    t.integer  "user_id",     limit: 4
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
+  end
 
   create_table "projects", force: :cascade do |t|
     t.string   "name",               limit: 255
     t.text     "description",        limit: 65535
     t.date     "start_date"
     t.date     "estimeted_end_date"
-    t.integer  "users_id",           limit: 4
     t.datetime "created_at",                       null: false
     t.datetime "updated_at",                       null: false
+    t.integer  "users_id",           limit: 4
   end
 
   create_table "settings", force: :cascade do |t|
@@ -46,6 +60,24 @@ ActiveRecord::Schema.define(version: 20150819055403) do
     t.integer  "user_id",     limit: 4
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false
+  end
+
+  create_table "task_project_user_relations", force: :cascade do |t|
+    t.integer  "task_id",    limit: 4
+    t.integer  "user_id",    limit: 4
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+  end
+
+  create_table "tasks", force: :cascade do |t|
+    t.string   "name",         limit: 255
+    t.text     "descriptions", limit: 65535
+    t.datetime "created_at",                             null: false
+    t.datetime "updated_at",                             null: false
+    t.integer  "users_id",     limit: 4
+    t.integer  "project_id",   limit: 4
+    t.integer  "status",       limit: 4,     default: 0
+    t.integer  "completed_by", limit: 4
   end
 
   create_table "users", force: :cascade do |t|

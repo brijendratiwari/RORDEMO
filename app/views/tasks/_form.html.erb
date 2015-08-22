@@ -1,0 +1,53 @@
+<div class="x_content">
+  <%= form_for(@task,  :html => {:class => "form-horizontal form-label-left",:novalidate=>"novalidate"}) do |f| %>
+      <% if @task.errors.any? %>
+          <div id="error_explanation">
+            <h2><%= pluralize(@task.errors.count, "error") %> prohibited this task from being saved:</h2>
+
+            <ul>
+              <% @task.errors.full_messages.each do |message| %>
+                  <li><%= message %></li>
+              <% end %>
+            </ul>
+          </div>
+      <% end %>
+      <%= f.hidden_field :users_id,:value => current_user.id %>
+      <%= f.hidden_field :project_id,:value => params[:id] %>>
+      <div class="item form-group">
+        <%= f.label :name,:class=>"control-label col-md-3 col-sm-3 col-xs-12" %>
+        <div class="col-md-6 col-sm-6 col-xs-12">
+          <%= f.text_field :name, autofocus: true,:class=>'form-control' , :required =>'required',:placeholder=>"Title" %>
+        </div>
+        <% if @task.errors[:name].present? %>
+            <ul class="parsley-errors-list filled" id="parsley-id-2042"><li class="parsley-required">This value is required.</li></ul>
+        <% end %>
+      </div>
+      <div class="item form-group">
+        <%= f.label :descriptions,:class=>"control-label col-md-3 col-sm-3 col-xs-12" %>
+        <div class="col-md-6 col-sm-6 col-xs-12">
+          <%= f.text_area :descriptions, :class=>'form-control' , :required =>'required',:placeholder=>"Task Description" %>
+        </div>
+        <% if @task.errors[:descriptions].present? %>
+            <ul class="parsley-errors-list filled" id="parsley-id-2042"><li class="parsley-required">This value is required.</li></ul>
+        <% end %>
+      </div>
+
+      <div class="item form-group">
+        <%= f.fields_for :task_project_user_relations do |m| %>
+
+            <%= m.label :users_id,:class=>"control-label col-md-3 col-sm-3 col-xs-12" %>
+            <div class="col-md-6 col-sm-6 col-xs-12">
+              <%= m.select(:users_id,  User.all.map{|u| ["#{u.firstname}", u.id]}, { :class=>'form-control' },{:multiple => true}) %>
+            </div>
+
+        <% end %>
+
+      </div>
+      <div class="ln_solid"></div>
+      <div class="form-group">
+        <div class="col-md-6 col-md-offset-3">
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+      </div>
+  <% end %>
+</div>

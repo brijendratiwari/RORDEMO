@@ -1,4 +1,5 @@
 class SettingsmtpsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_settingsmtp, only: [:show, :edit, :update, :destroy]
 
   # GET /settingsmtps
