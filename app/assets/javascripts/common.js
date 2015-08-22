@@ -172,16 +172,7 @@ $(document).ready(function(){
             "Hours worked": 211
         }
     ];
-    /*Morris.Bar({
-        element: 'graph_bar',
-        data: day_data,
-        xkey: 'period',
-        hideHover: 'auto',
-        barColors: ['#26B99A', '#34495E', '#ACADAC', '#3498DB'],
-        ykeys: ['Hours worked', 'sorned'],
-        labels: ['Hours worked', 'SORN'],
-        xLabelAngle: 60
-    });*/
+
 
     // input tag
     $('#tags_1').tagsInput({
@@ -224,3 +215,119 @@ function onChangeTag(input, tag) {
     alert("Changed a tag: " + tag);
 }
 
+$(window).load(function () {
+
+    var date = new Date();
+    var d = date.getDate();
+    var m = date.getMonth();
+    var y = date.getFullYear();
+    var started;
+    var categoryClass;
+
+    var calendar = $('#calendar').fullCalendar({
+        header: {
+            left: 'prev,next today',
+            center: 'title',
+            right: 'month,agendaWeek,agendaDay'
+        },
+        selectable: true,
+        selectHelper: true,
+        select: function (start, end, allDay) {
+            $('#fc_create').click();
+
+            started = start;
+            ended = end
+
+            $(".antosubmit").on("click", function () {
+                var title = $("#title").val();
+                if (end) {
+                    ended = end
+                }
+                categoryClass = $("#event_type").val();
+
+                if (title) {
+                    calendar.fullCalendar('renderEvent', {
+                            title: title,
+                            start: started,
+                            end: end,
+                            allDay: allDay
+                        },
+                        true // make the event "stick"
+                    );
+                }
+                $('#title').val('');
+                calendar.fullCalendar('unselect');
+
+                $('.antoclose').click();
+
+                return false;
+            });
+        },
+        eventClick: function (calEvent, jsEvent, view) {
+            //alert(calEvent.title, jsEvent, view);
+
+            $('#fc_edit').click();
+            $('#title2').val(calEvent.title);
+            categoryClass = $("#event_type").val();
+
+            $(".antosubmit2").on("click", function () {
+                calEvent.title = $("#title2").val();
+
+                calendar.fullCalendar('updateEvent', calEvent);
+                $('.antoclose2').click();
+            });
+            calendar.fullCalendar('unselect');
+        },
+        editable: true,
+        events: '/events.json'
+    });
+});
+
+$(document).ready(function(){
+
+    $(document).bind('ajaxError', 'form#new_person', function(event, jqxhr, settings, exception){
+
+        // note: jqxhr.responseJSON undefined, parsing responseText instead
+        $(event.data).render_form_errors( $.parseJSON(jqxhr.responseText) );
+
+    });
+
+});
+
+(function($) {
+
+    $.fn.modal_success = function(){
+        // close modal
+        this.modal('hide');
+
+        // clear form input elements
+        // todo/note: handle textarea, select, etc
+        this.find('form input[type="text"]').val('');
+
+        // clear error state
+        this.clear_previous_errors();
+    };
+
+    $.fn.render_form_errors = function(errors){
+
+        $form = this;
+        this.clear_previous_errors();
+        model = this.data('model');
+
+        // show error messages in input form-group help-block
+        $.each(errors, function(field, messages){
+            $input = $('input[name="' + model + '[' + field + ']"]');
+            console.log($input);
+            $input.closest('.form-group').addClass('has-error').find('.help-block').html( messages.join(' & ') );
+        });
+
+    };
+
+    $.fn.clear_previous_errors = function(){
+        $('.form-group.has-error', this).each(function(){
+            $('.help-block', $(this)).html('');
+            $(this).removeClass('has-error');
+        });
+    }
+
+}(jQuery));

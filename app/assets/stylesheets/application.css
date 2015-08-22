@@ -17,7 +17,9 @@
  *= require css/maps/jquery-jvectormap-2.0.1
  *= require css/icheck/flat/green.css
  *= require css/datatables/tools/css/dataTables.tableTools
-  *= require css/custom
-  *= require font-awesome
+ *= require css/custom
+ *= require font-awesome
+ *= require css/calendar/fullcalendar
+
 
  */
