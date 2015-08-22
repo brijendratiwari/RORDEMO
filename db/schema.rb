@@ -33,9 +33,9 @@ ActiveRecord::Schema.define(version: 20150822060636) do
     t.text     "description",        limit: 65535
     t.date     "start_date"
     t.date     "estimeted_end_date"
+    t.integer  "users_id",           limit: 4
     t.datetime "created_at",                       null: false
     t.datetime "updated_at",                       null: false
-    t.integer  "users_id",           limit: 4
   end
 
   create_table "settings", force: :cascade do |t|
