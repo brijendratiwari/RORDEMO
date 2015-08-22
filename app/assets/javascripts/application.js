@@ -33,12 +33,12 @@
 //= require js/flot/jquery.flot.resize
 //= require js/skycons/skycons
 //= require js/validator/validator
-//= require common
+
 //= require js/datatables/js/jquery.dataTables
 //= require js/datatables/tools/js/dataTables.tableTools
 //= require js/chartjs/chart.min
 //= require js/progressbar/bootstrap-progressbar.min
-//= require js/moris/morris
-//= require js/moris/raphael-min
-//= require js/tags/jquery.tagsinput.min
 
+//= require js/tags/jquery.tagsinput.min
+//= require js/calendar/fullcalendar.min
+//= require common
