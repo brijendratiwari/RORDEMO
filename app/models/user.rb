@@ -18,7 +18,7 @@ class User < ActiveRecord::Base
 
   belongs_to :project
   belongs_to :task
-
+  belongs_to :comment
 
   after_create :congrats_email
 

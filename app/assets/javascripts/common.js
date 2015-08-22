@@ -172,7 +172,7 @@ $(document).ready(function(){
             "Hours worked": 211
         }
     ];
-    Morris.Bar({
+    /*Morris.Bar({
         element: 'graph_bar',
         data: day_data,
         xkey: 'period',
@@ -181,12 +181,35 @@ $(document).ready(function(){
         ykeys: ['Hours worked', 'sorned'],
         labels: ['Hours worked', 'SORN'],
         xLabelAngle: 60
-    });
+    });*/
 
     // input tag
     $('#tags_1').tagsInput({
         width: 'auto'
     });
+
+
+    // ajax calling for add comments for task....
+    $("#submitComment").on("click",function(){
+
+       var comment = $("#taskComment").val();
+       var task_id = $("#taskId").val();
+       var user_id = $("#userId").val();
+
+        $.ajax({
+            type: "POST",
+            url: "/comments/create",
+            data: { comment: { comments: comment, task_id: task_id,users_id:user_id } },
+            success:function(response){
+                if(response.status == true){
+                    window.location.href = "/tasks/"+task_id+"";
+                }
+
+            }
+
+        })
+
+    })
 
 });
 function onAddTag(tag) {

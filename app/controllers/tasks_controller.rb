@@ -2,6 +2,7 @@ class TasksController < ApplicationController
   before_action :authenticate_user!
   before_action :set_task, only: [:show, :edit, :update, :destroy]
 
+
   # GET /tasks
   # GET /tasks.json
   def index
@@ -75,7 +76,9 @@ class TasksController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_task
-      @task = Task.find(params[:format])
+      @comments = Comment.all
+      @task = Task.find(params[:id])
+
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

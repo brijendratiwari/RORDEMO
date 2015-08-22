@@ -11,7 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150822060636) do
+ActiveRecord::Schema.define(version: 20150822104320) do
+
+  create_table "comments", force: :cascade do |t|
+    t.text     "comments",   limit: 65535
+    t.integer  "task_id",    limit: 4
+    t.integer  "users_id",   limit: 4
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+  end
 
   create_table "posts", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -33,9 +41,9 @@ ActiveRecord::Schema.define(version: 20150822060636) do
     t.text     "description",        limit: 65535
     t.date     "start_date"
     t.date     "estimeted_end_date"
-    t.integer  "users_id",           limit: 4
     t.datetime "created_at",                       null: false
     t.datetime "updated_at",                       null: false
+    t.integer  "users_id",           limit: 4
   end
 
   create_table "settings", force: :cascade do |t|

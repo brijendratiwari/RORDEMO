@@ -49,29 +49,75 @@
 
                 <!-- end of user messages -->
                 <ul class="messages">
-                  <% @tasks.each do |data| %>
                       <li>
-                        <img src="<%= current_user.avatar.url %>" class="avatar" alt="Avatar">
+                        <img src="<%= @task.users.avatar.url %>" class="avatar" alt="Avatar">
                         <div class="message_date">
-                          <h3 class="date text-info"><%= data.created_at.strftime("%d") %></h3>
-                          <p class="month"><%= data.created_at.strftime("%B")%>,<%= data.created_at.strftime("%Y")%></p>
+                          <h3 class="date text-info"><%= @task.created_at.strftime("%d") %></h3>
+                          <p class="month"><%= @task.created_at.strftime("%B")%>,<%= @task.created_at.strftime("%Y")%></p>
                         </div>
                         <div class="message_wrapper">
-                          <h4 class="heading">Brian Michaels (Assigned by)</h4>
-                          <b><%= data.name %></b><br>
-                          <blockquote class="message"><%= data.descriptions %></blockquote>
-                          <br />
+                          <h4 class="heading"><%= @task.users.firstname %> <%= @task.users.lastname %> (Assigned by)</h4>
+                          <b><%= @task.name %></b><br>
+                          <blockquote class="message"><%= @task.descriptions %></blockquote>
                           <p class="url">
-                            <a href="#"><i class="fa fa-users"></i>Assigned to :</a>
+                            <i class="fa fa-users"></i> Assigned to :
                           </p>
-                          <p class="url">
-                            <span class="fs1 text-info" aria-hidden="true" data-icon=""></span>
-                            <a href="#"><i class="fa fa-user"></i> User Acceptance Test.doc </a>
-                          </p>
+                          <% @task.user.each do |username| %>
+                              <p class="url">
+                                <span class="fs1 text-info" aria-hidden="true" data-icon=""></span>
+                                <a href="#"><i class="fa fa-user"></i> <%= username.firstname %> <%= username.lastname %> </a>
+                              </p>
+                          <% end %>
+                          <% if @task.status == 0  %>
+                              <a class ='btn btn-xs btn-warning'>Pending</a>
+                          <%
+                             else
+                          %>
+                              <a class ='btn btn-xs btn-success'>Done (By sandeep)</a>
+                          <% end  %>
+                          <% if !@comments.nil? %>
+                              <div>
 
+                                <h4>Recent Comments</h4>
+
+                                <!-- end of user messages -->
+                                <ul class="messages">
+                                  <% @comments.each do |data| %>
+                                  <li>
+                                    <img src="<%= data.users.avatar.url %>" class="avatar" alt="Avatar">
+                                    <div class="message_date">
+                                      <h3 class="date text-info"><%= data.created_at.strftime("%d")%></h3>
+                                      <p class="month"><%= data.created_at.strftime("%B")%>,<%= data.created_at.strftime("%Y")%></p>
+                                    </div>
+                                    <div class="message_wrapper">
+                                      <h4 class="heading"><%= data.users.firstname %> <%= data.users.lastname %></h4>
+                                      <blockquote class="message"><%= data.comments %></blockquote>
+                                      <br />
+                                      <p class="url">
+                                        <span class="fs1 text-info" aria-hidden="true" data-icon=""></span>
+                                        <a href="#"><i class="fa fa-paperclip"></i> User Acceptance Test.doc </a>
+                                      </p>
+                                    </div>
+                                  </li>
+                                  <% end %>
+                                </ul>
+                                <!-- end of user messages -->
+
+
+                              </div>
+
+                          <% end %>
+                          <div class="col-md-12">
+                          <textarea class="form-control" name="taskComment" id="taskComment" placeholder="add your comments here..."></textarea>
+                            <input type="hidden" value="<%= @task.id %>" id="taskId">
+                            <input type="hidden" value="<%= current_user.id %>" id="userId">
+                            <div class="col-md-12">&nbsp;</div>
+                            <div class="col-md-4">
+                              <button type="button" class ='btn btn-xs btn-primary' id="submitComment">Submit</button>
+                            </div>
+                          </div>
                         </div>
                       </li>
-                  <% end %>
                 </ul>
                 <!-- end of user messages -->
 

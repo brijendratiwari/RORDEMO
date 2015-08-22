@@ -59,7 +59,7 @@
                     </div>
                     <div class="message_wrapper">
                       <h4 class="heading"><%= data.users.firstname.titleize %> <%= data.users.lastname %> (Assigned by)</h4>
-                      <b><%= data.name %></b><br>
+                      <a href="<%= task_path(:id => data.id) %>"><b><%= data.name %></b></a><br>
                       <blockquote class="message"><%= data.descriptions %></blockquote>
                       <br />
                       <p class="url">
@@ -71,7 +71,13 @@
                         <a href="#"><i class="fa fa-user"></i> <%= username.firstname %> <%= username.lastname %> </a>
                       </p>
                      <% end %>
-
+                      <% if data.status == 0  %>
+                      <a class ='btn btn-xs btn-warning'>Pending</a>
+                       <%
+                         else
+                       %>
+                          <a class ='btn btn-xs btn-success'>Done (By sandeep)</a>
+                      <% end  %>
                     </div>
                   </li>
                 <% end %>

@@ -9,7 +9,8 @@ Rails.application.routes.draw do
   resources :projects
   resources :settingsmtps
 
-
+get 'comments/index'
+post 'comments/create'
 
   get 'mymail/show'
 
