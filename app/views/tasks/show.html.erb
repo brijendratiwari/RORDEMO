@@ -18,7 +18,7 @@
           <div class="x_title">
             <h2>Task List with descriptions</h2>
             <ul class="nav navbar-right panel_toolbox">
-              <%= link_to 'Project List',"#", :class => 'btn btn-xs btn-primary' %>
+              <%= link_to 'Project List',projects_path, :class => 'btn btn-xs btn-primary' %>
             </ul>
             <div class="clearfix"></div>
           </div>
@@ -73,7 +73,7 @@
                           <%
                              else
                           %>
-                              <a class ='btn btn-xs btn-success'>Done (By sandeep)</a>
+                              <a class ='btn btn-xs btn-success'>Done (By <%= @task.nasty_user.firstname %> <%= @task.nasty_user.lastname %>)</a>
                           <% end  %>
                           <% if !@comments.nil? %>
                               <div>

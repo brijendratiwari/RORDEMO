@@ -8,7 +8,7 @@ class TasksController < ApplicationController
   def index
     if params.has_key?(:user_id)
     @tasks = Task.joins(:task_project_user_relations).where('tasks.project_id = ?',params[:id]).where('task_project_user_relations.user_id = ?',params[:user_id]).select('tasks.*')
-         else
+    else
       @tasks = Task.where('project_id = ?',params[:id])
     end
   end
@@ -63,6 +63,22 @@ class TasksController < ApplicationController
     end
   end
 
+  # PATCH/PUT /tasks/1
+  # PATCH/PUT /tasks/1.json
+  def updatedata
+    @tasks = Task.find_by_id(params[:tasks][:id])
+    if @tasks.update_attributes :status => params[:tasks][:status], :completed_by => params[:tasks][:completed_by]
+      @return_data = Hash.new
+      @return_data['status'] = true
+      render :json => @return_data
+
+    else
+      @return_data = Hash.new
+      @return_data['status'] = false
+      render :json => @return_data
+    end
+  end
+
   # DELETE /tasks/1
   # DELETE /tasks/1.json
   def destroy
@@ -76,7 +92,7 @@ class TasksController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_task
-      @comments = Comment.all
+      @comments = Comment.where('task_id = ?',params[:id])
       @task = Task.find(params[:id])
 
     end

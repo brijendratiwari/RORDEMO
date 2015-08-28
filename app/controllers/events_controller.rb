@@ -1,16 +1,18 @@
 class EventsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_event, only: [:show, :edit, :update, :destroy]
 
   # GET /events
   # GET /events.json
   def index
-    # @events = Event.all
+     @events = Event.all
     @event = Event.new
   end
 
   # GET /events/1
   # GET /events/1.json
   def show
+
   end
 
   # GET /events/new
@@ -29,7 +31,7 @@ class EventsController < ApplicationController
 
     respond_to do |format|
       if @event.save
-        format.html { redirect_to @event, notice: 'Event was successfully created.' }
+        format.html { redirect_to events_path, notice: 'Event was successfully created.' }
         format.json { render :show, status: :created, location: @event }
         format.js   { render 'show', status: :created, location: @event }
       else

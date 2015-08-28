@@ -3,6 +3,9 @@ Rails.application.routes.draw do
   resources :events
   resources :tasks
 
+
+  post 'tasks/updatedata'
+
   get 'profile/show'
 
   get 'contact/index'

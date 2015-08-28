@@ -199,10 +199,32 @@ $(document).ready(function(){
             }
 
         })
+    });
+
+    // ajax calling for complete the task....
+    $(".submitTask").on("click",function(){
+
+       var user_id = $(this).parent().find('.user_val').val();
+       var task_id = $(this).parent().find('.task_id_val').val();
+       var status = $(this).parent().find('.status_val').val();
+
+        $.ajax({
+            type: "POST",
+            url: "/tasks/updatedata",
+            data: { tasks: { completed_by: user_id, id: task_id,status:status } },
+            success:function(response){
+                if(response.status == true){
+                    window.location.href = "/tasks/"+task_id+"";
+                }
+
+            }
+
+        })
 
     })
+})
 
-});
+
 function onAddTag(tag) {
     alert("Added a tag: " + tag);
 }
@@ -222,6 +244,7 @@ $(window).load(function () {
     var m = date.getMonth();
     var y = date.getFullYear();
     var started;
+    var ended;
     var categoryClass;
 
     var calendar = $('#calendar').fullCalendar({
@@ -244,12 +267,11 @@ $(window).load(function () {
                     ended = end
                 }
                 categoryClass = $("#event_type").val();
-
                 if (title) {
                     calendar.fullCalendar('renderEvent', {
                             title: title,
                             start: started,
-                            end: end,
+                            end: ended,
                             allDay: allDay
                         },
                         true // make the event "stick"
@@ -264,10 +286,11 @@ $(window).load(function () {
             });
         },
         eventClick: function (calEvent, jsEvent, view) {
-            //alert(calEvent.title, jsEvent, view);
+            alert(calEvent.title, jsEvent, view);
 
-            $('#fc_edit').click();
+            $('#fc_edit').trigger('click');
             $('#title2').val(calEvent.title);
+            $('#event_id').val(calEvent.id);
             categoryClass = $("#event_type").val();
 
             $(".antosubmit2").on("click", function () {
@@ -279,7 +302,7 @@ $(window).load(function () {
             calendar.fullCalendar('unselect');
         },
         editable: true,
-        events: '/events.json'
+       events: 'events.json'
     });
 });
 

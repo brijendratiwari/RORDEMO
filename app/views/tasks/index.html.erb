@@ -73,11 +73,20 @@
                      <% end %>
                       <% if data.status == 0  %>
                       <a class ='btn btn-xs btn-warning'>Pending</a>
+                          <% if params.has_key?(:user_id) %>
+                             <div>
+                            <input type="hidden" class="user_val" value="<%= current_user.id %>">
+                            <input type="hidden" class="task_id_val" value="<%= data.id %>">
+                            <input type="hidden" class="status_val" value="1">
+                              <button type="button" class="btn btn-primary submitTask">Submit Task</button>
+                              </div>
+                          <% end %>
                        <%
                          else
                        %>
-                          <a class ='btn btn-xs btn-success'>Done (By sandeep)</a>
+                          <a class ='btn btn-xs btn-success'>Done (By <%= data.nasty_user.firstname %> <%= data.nasty_user.lastname %>)</a>
                       <% end  %>
+
                     </div>
                   </li>
                 <% end %>
