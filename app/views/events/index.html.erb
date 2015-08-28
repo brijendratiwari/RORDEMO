@@ -98,8 +98,8 @@
           </div>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-default antoclose" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary antosubmit">Save changes</button>
+        <!--  <button type="button" class="btn btn-default antoclose" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary antosubmit">Save changes</button> -->
         </div>
       </div>
     </div>
@@ -115,27 +115,39 @@
         <div class="modal-body">
 
           <div id="testmodal2" style="padding: 5px 20px;">
-            <!--<form id="antoform2" class="form-horizontal calender" role="form">-->
-              <!--<div class="form-group">-->
-                <!--<label class="col-sm-3 control-label">Title</label>-->
-                <!--<div class="col-sm-9">-->
-                  <!--<input type="text" class="form-control" id="title2" name="title2">-->
-                <!--</div>-->
-              <!--</div>-->
-              <!--<div class="form-group">-->
-                <!--<label class="col-sm-3 control-label">Description</label>-->
-                <!--<div class="col-sm-9">-->
-                  <!--<textarea class="form-control" style="height:55px;" id="descr2" name="descr"></textarea>-->
-                <!--</div>-->
-              <!--</div>-->
 
-            <!--</form>-->
-            <%= render 'form', modal: true %>
+            <div class="x_content">
+              <% modal ||= false %>
+              <% remote = modal ? true : false %>
+              <%= form_for(@event, remote: remote, html: {:class => "form-horizontal form-label-left",:novalidate=>"novalidate",role: :form, 'data-model' => 'event'}) do |f| %>
+                  <div class="item form-group">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="website">Title<span class="required">*</span>
+
+                    </label>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                      <%= f.text_field :title, autofocus: true,:class=>'form-control' ,:id=>"title2" , :required =>'required',:placeholder=>"Title" %>
+                    </div>
+
+                    <% if @event.errors[:title].present? %>
+                        <ul class="parsley-errors-list filled" id="parsley-id-2042"><li class="parsley-required">This value is required.</li></ul>
+                    <% end %>
+                  </div>
+                  <div class="ln_solid"></div>
+                  <div class="form-group">
+                    <div class="col-md-6 col-md-offset-3">
+                      <!--<button type="submit" class="btn btn-primary">Cancel</button>-->
+                      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                      <button id="send" type="submit" class="btn btn-success">Submit</button>
+                    </div>
+                  </div>
+              <% end %>
+
+            </div>
+
           </div>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-default antoclose2" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary antosubmit2">Save changes</button>
+
         </div>
       </div>
     </div>

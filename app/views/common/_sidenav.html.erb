@@ -28,14 +28,11 @@
         <ul class="nav side-menu">
           <li><a><i class="fa fa-home"></i> Home <span class="fa fa-chevron-down"></span></a>
             <ul class="nav child_menu" style="display: none">
+              <li><a href="<%= home_index_path %>">Dashboard</a></li>
               <% if current_user.accessLevel == "Admin" %>
               <li><a href="<%= admin_index_path %>">User's List</a>
               </li>
               <% end %>
-              <li><a href="index2.html">Dashboard2</a>
-              </li>
-              <li><a href="index3.html">Dashboard3</a>
-              </li>
             </ul>
           </li>
           <li><a><i class="fa fa-folder-o"></i> Project <span class="fa fa-chevron-down"></span></a>
@@ -63,6 +60,8 @@
             </ul>
           </li>
           <li><a href="<%= contact_index_path %>"><i class="fa fa-users"></i> Contact's</a></li>
+          <li><a href="<%= events_path %>"><i class="fa fa-calendar"></i> Event's</a></li>
+
           <li><a><i class="fa fa-desktop"></i> UI Elements <span class="fa fa-chevron-down"></span></a>
             <ul class="nav child_menu" style="display: none">
               <li><a href="general_elements.html">General Elements</a>

@@ -5,6 +5,7 @@ class Task < ActiveRecord::Base
   accepts_nested_attributes_for :user
 
   has_one :users,:class_name => "User",foreign_key: "id",:primary_key => :users_id
+  has_one :nasty_user,:class_name => "User",foreign_key: "id",:primary_key => :completed_by
 
 
 end

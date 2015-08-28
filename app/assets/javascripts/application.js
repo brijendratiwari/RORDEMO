@@ -15,6 +15,8 @@
 //= require js/nprogress
 // require turbolinks
 //= require js/bootstrap.min
+//= require js/gauge/gauge.min
+//= require js/gauge/gauge_demo
 //= require js/chartjs/chart.min
 //= require js/progressbar/bootstrap-progressbar.min
 //= require js/nicescroll/jquery.nicescroll.min
@@ -38,8 +40,13 @@
 //= require js/datatables/tools/js/dataTables.tableTools
 //= require js/chartjs/chart.min
 //= require js/progressbar/bootstrap-progressbar.min
-// require js/moris/morris
+//= require js/moris/morris
 //= require js/moris/raphael-min
 //= require js/tags/jquery.tagsinput.min
 //= require js/calendar/fullcalendar.min
+
+//= require js/maps/gdp-data
+//= require js/maps/jquery-jvectormap-2.0.1.min
+//= require js/maps/jquery-jvectormap-world-mill-en
+//= require js/maps/jquery-jvectormap-us-aea-en
 //= require common

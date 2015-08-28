@@ -11,7 +11,6 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 20150822104320) do
 
   create_table "comments", force: :cascade do |t|
@@ -20,8 +19,7 @@ ActiveRecord::Schema.define(version: 20150822104320) do
     t.integer  "users_id",   limit: 4
     t.datetime "created_at",               null: false
     t.datetime "updated_at",               null: false
-=======
-ActiveRecord::Schema.define(version: 20150822072427) do
+  end
 
   create_table "events", force: :cascade do |t|
     t.string   "title",       limit: 255
@@ -30,7 +28,6 @@ ActiveRecord::Schema.define(version: 20150822072427) do
     t.datetime "end"
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
->>>>>>> 0b01f2edca3ce1426aceb5843b56ee5703697f3f
   end
 
   create_table "posts", force: :cascade do |t|
