@@ -183,9 +183,9 @@ $(document).ready(function(){
     // ajax calling for add comments for task....
     $("#submitComment").on("click",function(){
 
-       var comment = $("#taskComment").val();
-       var task_id = $("#taskId").val();
-       var user_id = $("#userId").val();
+        var comment = $("#taskComment").val();
+        var task_id = $("#taskId").val();
+        var user_id = $("#userId").val();
 
         $.ajax({
             type: "POST",
@@ -204,9 +204,9 @@ $(document).ready(function(){
     // ajax calling for complete the task....
     $(".submitTask").on("click",function(){
 
-       var user_id = $(this).parent().find('.user_val').val();
-       var task_id = $(this).parent().find('.task_id_val').val();
-       var status = $(this).parent().find('.status_val').val();
+        var user_id = $(this).parent().find('.user_val').val();
+        var task_id = $(this).parent().find('.task_id_val').val();
+        var status = $(this).parent().find('.status_val').val();
 
         $.ajax({
             type: "POST",
@@ -302,16 +302,56 @@ $(window).load(function () {
             calendar.fullCalendar('unselect');
         },
         editable: true,
-       events: 'events.json'
+        eventDrop: function(event, delta, revertFunc) {
+            var id = $(this).attr('id');
+            var end;
+
+            if(event.end != null){
+                end = event.end.format();
+            }
+            else{
+                end = event.start.format();
+            }
+
+            $.ajax({
+                type: "PUT",
+                url: "/events/"+id,
+                data: { event: { start: event.start.format(), id: id,end:end,description:event.description,title:event.title} },
+                success:function(response){
+
+                }
+
+            })
+
+            //console.log(event.start.format());
+            //if(event.end != null){
+            //    console.log(event.end.format());
+            //}
+            //
+            //if (!confirm("Are you sure about this change?")) {
+            //    revertFunc();
+            //}
+
+        },
+        eventAfterRender:function( event, element, view ) {
+            $(element).attr("id",event._id);
+        },
+        events: 'events.json'
     });
 });
 
 $(document).ready(function(){
 
-    $(document).bind('ajaxError', 'form#new_person', function(event, jqxhr, settings, exception){
+    $(document).bind('ajaxError', 'form#new_event', function(event, jqxhr, settings, exception){
+        if(jqxhr.status == 201)
+        {
+            $(event.data).modal_success();
+        }
+        else{
+            // note: jqxhr.responseJSON undefined, parsing responseText instead
+            $(event.data).render_form_errors( $.parseJSON(jqxhr.responseText) );
+        }
 
-        // note: jqxhr.responseJSON undefined, parsing responseText instead
-        $(event.data).render_form_errors( $.parseJSON(jqxhr.responseText) );
 
     });
 
@@ -320,15 +360,15 @@ $(document).ready(function(){
 (function($) {
 
     $.fn.modal_success = function(){
-        // close modal
-        this.modal('hide');
 
         // clear form input elements
         // todo/note: handle textarea, select, etc
-        this.find('form input[type="text"]').val('');
-
+        this.trigger('reset');
+        console.log(this.find("input[type='text']"));
         // clear error state
         this.clear_previous_errors();
+
+        this.find('#event_close').click();
     };
 
     $.fn.render_form_errors = function(errors){
