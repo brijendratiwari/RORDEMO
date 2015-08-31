@@ -261,6 +261,9 @@ $(window).load(function () {
             started = start;
             ended = end
 
+            $('body').find('#event_start').val(started.format("YYYY-MM-DD"));
+            $('body').find('#event_end').val(ended.format("YYYY-MM-DD"));
+
             $(".antosubmit").on("click", function () {
                 var title = $("#title").val();
                 if (end) {
@@ -286,18 +289,42 @@ $(window).load(function () {
             });
         },
         eventClick: function (calEvent, jsEvent, view) {
-            alert(calEvent.title, jsEvent, view);
+            //alert(calEvent.title, jsEvent, view);
 
             $('#fc_edit').trigger('click');
-            $('#title2').val(calEvent.title);
-            $('#event_id').val(calEvent.id);
-            categoryClass = $("#event_type").val();
+            console.log($('body').find('#event_title').val(calEvent.title));
 
-            $(".antosubmit2").on("click", function () {
-                calEvent.title = $("#title2").val();
+            $('body').find('#send').hide();
+            $('body').find('#update').removeClass('hide');
+
+            if(calEvent.end != null){
+                end = calEvent.end.format("YYYY-MM-DD");
+            }
+            else{
+                end = calEvent.start.format("YYYY-MM-DD");
+            }
+
+            $('body').find('#event_title').val(calEvent.title);
+            $('body').find('#event_description').val(calEvent.description);
+            $('body').find('#event_start').val(calEvent.start.format("YYYY-MM-DD"));
+            $('body').find('#event_end').val(end);
+
+            $("#update").unbind().on("click", function () {
+
+                $.ajax({
+                    type: "PUT",
+                    url: "/events/"+calEvent.id,
+                    data: $("#new_event").serialize(),
+                    success:function(response){
+                        $("#new_event").trigger('reset');
+                    }
+
+                })
+
+                calEvent.title = $("#event_title").val();
 
                 calendar.fullCalendar('updateEvent', calEvent);
-                $('.antoclose2').click();
+                $('#event_close').click();
             });
             calendar.fullCalendar('unselect');
         },
@@ -334,7 +361,18 @@ $(window).load(function () {
 
         },
         eventAfterRender:function( event, element, view ) {
+            //element.append( "<span class='closeon'>X</span>" );
             $(element).attr("id",event._id);
+            //element.find(".closeon").click(function() {
+            //
+            //    $.ajax({
+            //        type: "DELETE",
+            //        url: "/events/"+event._id,
+            //        success:function(response){
+            //            $('#calendar').fullCalendar('removeEvents',event._id);
+            //        }
+            //    })
+            //});
         },
         events: 'events.json'
     });
