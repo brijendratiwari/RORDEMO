@@ -264,28 +264,12 @@ $(window).load(function () {
             $('body').find('#event_start').val(started.format("YYYY-MM-DD"));
             $('body').find('#event_end').val(ended.format("YYYY-MM-DD"));
 
-            $(".antosubmit").on("click", function () {
-                var title = $("#title").val();
+            $("#send").on("click", function () {
+                var title = $("#event_title").val();
                 if (end) {
                     ended = end
                 }
-                categoryClass = $("#event_type").val();
-                if (title) {
-                    calendar.fullCalendar('renderEvent', {
-                            title: title,
-                            start: started,
-                            end: ended,
-                            allDay: allDay
-                        },
-                        true // make the event "stick"
-                    );
-                }
-                $('#title').val('');
-                calendar.fullCalendar('unselect');
 
-                $('.antoclose').click();
-
-                return false;
             });
         },
         eventClick: function (calEvent, jsEvent, view) {
@@ -350,29 +334,20 @@ $(window).load(function () {
 
             })
 
-            //console.log(event.start.format());
-            //if(event.end != null){
-            //    console.log(event.end.format());
-            //}
-            //
-            //if (!confirm("Are you sure about this change?")) {
-            //    revertFunc();
-            //}
-
         },
         eventAfterRender:function( event, element, view ) {
-            //element.append( "<span class='closeon'>X</span>" );
+            element.parent().append( "<span class='closeon'>X</span>" );
             $(element).attr("id",event._id);
-            //element.find(".closeon").click(function() {
-            //
-            //    $.ajax({
-            //        type: "DELETE",
-            //        url: "/events/"+event._id,
-            //        success:function(response){
-            //            $('#calendar').fullCalendar('removeEvents',event._id);
-            //        }
-            //    })
-            //});
+            element.parent().find(".closeon").unbind().click(function() {
+
+                $.ajax({
+                    type: "DELETE",
+                    url: "/events/"+event._id,
+                    success:function(response){
+                        $('#calendar').fullCalendar('removeEvents',event._id);
+                    }
+                })
+            });
         },
         events: 'events.json'
     });
@@ -383,7 +358,14 @@ $(document).ready(function(){
     $(document).bind('ajaxError', 'form#new_event', function(event, jqxhr, settings, exception){
         if(jqxhr.status == 201)
         {
+            console.log(jqxhr.responseText);
+            $('#calendar').fullCalendar('renderEvent', $.parseJSON(jqxhr.responseText) ,
+                true // make the event "stick"
+            );
+
+            $('#calendar').fullCalendar('unselect');
             $(event.data).modal_success();
+
         }
         else{
             // note: jqxhr.responseJSON undefined, parsing responseText instead
