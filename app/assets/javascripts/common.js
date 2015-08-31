@@ -5,6 +5,7 @@ $(document).ready(function(){
 
     $('.dateBirth').daterangepicker({
         singleDatePicker: true,
+        format: 'YYYY-MM-DD',
         calender_style: "picker_2"
     }, function (start, end, label) {
         console.log(start.toISOString(), end.toISOString(), label);
